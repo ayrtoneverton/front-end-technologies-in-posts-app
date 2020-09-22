@@ -9,6 +9,8 @@ const ReactQuillStyled = styled(ReactQuill)`
     padding: 0 .5rem !important;
   }
   .ql-container {
+    max-height: 32rem;
+    overflow: auto;
     border-radius: 0 0 4px 4px;
   }
   .ql-editor {
@@ -45,8 +47,8 @@ const TextEditor = (props) => (
 
 export default TextEditor;
 
-export const ShowText = ({ text }) => (
-  <div className="ql-snow">
+export const ShowText = ({ text, ...props }) => (
+  <div className="ql-snow" {...props}>
     <div className="ql-editor" dangerouslySetInnerHTML={{ __html: text }} />
   </div>
 );

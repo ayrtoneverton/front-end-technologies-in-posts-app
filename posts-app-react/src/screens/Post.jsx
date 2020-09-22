@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { NotificationManager } from 'react-notifications';
 import { Typography, TextField, Button } from '@material-ui/core';
 import TextEditor from '../components/TextEditor';
 import Loading from '../components/Loading';
@@ -11,6 +12,7 @@ const Container = styled.div`
     margin: .6rem 0 .2rem 0;
   }
 `;
+
 const Actions = styled.div`
   margin-top: 1rem;
 
@@ -20,6 +22,7 @@ const Actions = styled.div`
 `;
 
 const Post = () => {
+  const history = useHistory();
   const { id } = useParams();
   const isUpdate = id !== 'new';
   const [post, setPost] = useState({});
@@ -32,7 +35,7 @@ const Post = () => {
 
   const save = async () => {
     if (!(post.title && post.description && post.body)) {
-      return alert('All field!');
+      return NotificationManager.error('All fields are required!');
     }
     if (isUpdate) {
       post._id = undefined;
@@ -40,7 +43,8 @@ const Post = () => {
     } else {
       await axios.post(process.env.REACT_APP_URL_API, post);
     }
-    window.history.back();
+    NotificationManager.success(`Post ${isUpdate ? 'updated' : 'created'} successfully!`);
+    history.push('..');
   };
 
   return (
@@ -52,7 +56,7 @@ const Post = () => {
         label="Title"
         variant="outlined"
         fullWidth
-        defaultValue={post.title || ''}
+        defaultValue={post.title}
         onChange={(e) => { post.title = e.target.value; }}
       />
       <TextField
@@ -62,17 +66,17 @@ const Post = () => {
         rows={2}
         rowsMax={5}
         fullWidth
-        defaultValue={post.description || ''}
+        defaultValue={post.description}
         onChange={(e) => { post.description = e.target.value; }}
       />
       <TextEditor
-        placeholder="Post body" 
-        defaultValue={post.body || ''}
+        placeholder="Post body"
+        defaultValue={post.body}
         onChange={(value) => { post.body = value; }}
       />
       <Actions>
         <Button variant="contained" color="primary" onClick={save}>Save</Button>
-        <Button variant="contained" onClick={() => window.history.back()}>Cancel</Button>
+        <Button variant="contained" onClick={() => history.goBack()}>Cancel</Button>
       </Actions>
     </Container>
   );
