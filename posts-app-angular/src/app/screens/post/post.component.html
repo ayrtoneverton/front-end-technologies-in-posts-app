@@ -1,0 +1,23 @@
+<h1>{{isUpdate ? 'Update' : 'Create'}} Post</h1>
+
+<h1 *ngIf="!post">Loading</h1>
+
+<div *ngIf="post">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input [(ngModel)]="post.title" matInput autofocus />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea
+      [(ngModel)]="post.description"
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="5"
+    ></textarea>
+  </mat-form-field>
+
+  <a mat-raised-button color="primary" (click)="save()">SAVE</a>
+  <a mat-raised-button (click)="cancel()">CANCEL</a>
+</div>

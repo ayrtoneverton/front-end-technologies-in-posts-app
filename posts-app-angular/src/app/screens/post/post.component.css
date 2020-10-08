@@ -1,0 +1,13 @@
+h1 {
+  font-size: 3rem;
+}
+
+mat-form-field {
+  width: 100%;
+  font-size: 1rem;
+  margin: .6rem 0 -1.2rem 0;
+}
+
+a {
+  margin: .8rem .6rem 0 0;
+}

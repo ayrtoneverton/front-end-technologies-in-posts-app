@@ -1,0 +1,13 @@
+.container-app {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 3rem 1rem 1rem;
+}
+
+.container-app > a {
+  margin: 0 .5rem .5rem 0;
+}
+
+mat-divider {
+  margin-bottom: 2rem;
+}
