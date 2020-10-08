@@ -1,6 +1,6 @@
 <h1>{{isUpdate ? 'Update' : 'Create'}} Post</h1>
 
-<h1 *ngIf="!post">Loading</h1>
+<app-loading *ngIf="!post"></app-loading>
 
 <div *ngIf="post">
   <mat-form-field appearance="outline">
@@ -17,6 +17,7 @@
       cdkAutosizeMaxRows="5"
     ></textarea>
   </mat-form-field>
+  <quill-editor [(ngModel)]="post.body" placeholder="Post body"></quill-editor>
 
   <a mat-raised-button color="primary" (click)="save()">SAVE</a>
   <a mat-raised-button (click)="cancel()">CANCEL</a>

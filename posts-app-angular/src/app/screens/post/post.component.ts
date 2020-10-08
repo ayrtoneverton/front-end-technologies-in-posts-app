@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import axios from 'axios';
 import { environment } from '../../../environments/environment';
 
@@ -15,10 +16,12 @@ export class PostComponent {
 
   constructor(
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     this.isUpdate = id !== 'new';
+
     if (this.isUpdate) {
       axios.get(environment.apiUrl + id).then(({ data }) => {
         this.post = data;
@@ -32,18 +35,18 @@ export class PostComponent {
     }
   }
 
-  save() {
-    if (!(this.post.title && this.post.description)) {
-      return alert('All fields are required!');
+  async save() {
+    if (!(this.post.title && this.post.description && this.post.body)) {
+      return this.toastr.error('All fields are required!');
     }
     if (this.isUpdate) {
       const { _id } = this.post;
       this.post._id = undefined;
-      axios.put(environment.apiUrl + _id, this.post);
+      await axios.put(environment.apiUrl + _id, this.post);
     } else {
-      axios.post(environment.apiUrl, this.post);
+      await axios.post(environment.apiUrl, this.post);
     }
-    alert(`Post ${this.isUpdate ? 'updated' : 'created'} successfully!`);
+    this.toastr.success(`Post ${this.isUpdate ? 'updated' : 'created'} successfully!`);
     this.location.back();
   }
 

@@ -11,3 +11,8 @@ mat-form-field {
 a {
   margin: .8rem .6rem 0 0;
 }
+
+quill-editor {
+  display: block;
+  margin-top: 1rem;
+}

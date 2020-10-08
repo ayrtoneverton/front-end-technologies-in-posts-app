@@ -1,1 +1,7 @@
-<p>view works!</p>
+<app-loading *ngIf="!post"></app-loading>
+
+<div *ngIf="post">
+  <h1>{{post.title}}</h1>
+
+  <quill-view-html [content]="post.body"></quill-view-html>
+</div>
