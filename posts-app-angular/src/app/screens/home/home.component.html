@@ -1,7 +1,23 @@
 <mat-form-field appearance="outline">
   <mat-label>Search</mat-label>
-  <input matInput placeholder="Search" type="search">
+  <input
+    matInput
+    type="search"
+    [(ngModel)]="search"
+    (input)="onSearch()"
+  />
   <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
 
-<p>home works!</p>
+<app-loading *ngIf="!posts"></app-loading>
+
+<app-card
+  *ngFor="let post of filteredPosts"
+  [title]="post.title"
+  [description]="post.description"
+  (view)="redirect('view/' + post._id)"
+  (edit)="redirect('post/' + post._id)"
+  (remove)="onRemove(post._id)"
+></app-card>
+
+<h1 *ngIf="posts && !filteredPosts.length">Nothing added yet</h1>

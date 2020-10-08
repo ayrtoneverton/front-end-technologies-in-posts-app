@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import axios from 'axios';
@@ -17,6 +18,7 @@ export class PostComponent {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService
   ) {
     const id = this.route.snapshot.paramMap.get('id');
@@ -47,7 +49,7 @@ export class PostComponent {
       await axios.post(environment.apiUrl, this.post);
     }
     this.toastr.success(`Post ${this.isUpdate ? 'updated' : 'created'} successfully!`);
-    this.location.back();
+    this.router.navigateByUrl('..');
   }
 
   cancel() {

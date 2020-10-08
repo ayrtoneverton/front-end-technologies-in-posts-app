@@ -1,0 +1,45 @@
+.card-container {
+  position: relative;
+  border: solid .02rem #DDD;
+  border-radius: 4px;
+  padding: .8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.card-container:hover .card-actions {
+  display: block;
+}
+
+h1 {
+  width: fit-content;
+  cursor: pointer;
+}
+h1:hover {
+  opacity: .7;
+}
+p {
+  margin: 0;
+}
+
+.card-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .8rem;
+  display: none;
+  background: #FFF;
+}
+.card-actions > * > :not(span) {
+  font-size: 1.5rem;
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: .5rem;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+.card-actions> * > :not(span):hover {
+  opacity: .7;
+}
+.card-actions > .card-confirm > :not(span) {
+  font-size: 1.6rem;
+}

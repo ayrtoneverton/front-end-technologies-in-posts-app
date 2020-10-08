@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './screens/home/home.component';
 import { PostComponent } from './screens/post/post.component';
 import { ViewComponent } from './screens/view/view.component';
+import { CardComponent } from './components/card/card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     HomeComponent,
     PostComponent,
     ViewComponent,
+    CardComponent,
     LoadingComponent
   ],
   imports: [

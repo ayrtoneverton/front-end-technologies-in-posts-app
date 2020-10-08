@@ -1,0 +1,18 @@
+<div class="card-container">
+  <h1 (click)="view.emit()">{{title}}</h1>
+  <p>{{description}}</p>
+
+  <div class="card-actions">
+    <div *ngIf="!confirm">
+      <mat-icon class="material-icons-outlined" (click)="view.emit()">visibility</mat-icon>
+      <mat-icon class="material-icons-outlined" (click)="edit.emit()">edit</mat-icon>
+      <mat-icon class="material-icons-outlined" (click)="confirm = true">delete</mat-icon>
+    </div>
+
+    <div *ngIf="confirm" class="card-confirm">
+      <span>Do you really want to remove?</span>
+      <mat-icon (click)="remove.emit()">done</mat-icon>
+      <mat-icon (click)="confirm = false">close</mat-icon>
+    </div>
+  </div>
+</div>
