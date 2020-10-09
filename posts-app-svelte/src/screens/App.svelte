@@ -6,11 +6,14 @@
 	import View from './View.svelte';
 
 	let msg;
+	let timeout;
 	const onMsg = (e) => {
 		msg = e.detail;
-		setTimeout(() => {
+
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
 			msg = null;
-		}, 4000)
+		}, 3000)
 	};
 
 	const routes = {
@@ -21,15 +24,16 @@
 </script>
 
 <Container id="main">
-	{#if msg}
-		<Alert id="msg" color={msg.color}>{msg.text}</Alert>
-	{/if}
 	<nav>
 		<Button color="primary" href="#/">HOME</Button>
 		<Button color="primary" href="#/post/new">NEW POST</Button>
 	</nav>
 
 	<Router {routes} on:routeEvent={onMsg} />
+
+	{#if msg}
+		<Alert id="msg" color={msg.color}>{msg.text}</Alert>
+	{/if}
 </Container>
 
 <style>

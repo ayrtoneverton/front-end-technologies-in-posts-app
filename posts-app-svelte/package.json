@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "quill": "^1.3.7",
     "sirv-cli": "^1.0.0",
-    "svelte-quill": "^1.2.0",
     "svelte-spa-router": "^3.0.3",
     "sveltestrap": "^3.9.1"
   }
